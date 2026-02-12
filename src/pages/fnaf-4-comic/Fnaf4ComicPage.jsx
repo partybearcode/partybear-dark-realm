@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { getComicPage } from '../../data/comicData'
+import { getComicPage } from '../../data/comic-data'
 import './Fnaf4ComicPage.css'
 
 function clamp(value, min, max) {

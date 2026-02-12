@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import ThreeScene from '../../components/three-scene/ThreeScene'
 import GameCard from '../../components/game-card/GameCard'
-import { comicPages, homeSections } from '../../data/comicData'
+import { comicPages, homeSections } from '../../data/comic-data'
 import './Home.css'
 
 function Home() {

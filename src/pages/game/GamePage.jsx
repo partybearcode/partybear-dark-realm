@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import PageHero from '../../components/page-hero/PageHero'
-import { comicPages, getComicPage, getRelatedPages } from '../../data/comicData'
+import { comicPages, getComicPage, getRelatedPages } from '../../data/comic-data'
 import { useAuth } from '../../context/AuthContext'
 import './GamePage.css'
 
