@@ -6,6 +6,15 @@
   padding: 1.6rem;
   display: grid;
   gap: 1.2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.arcade-cabinet:fullscreen .ghost-tap {
+  width: min(520px, 90vw);
+  max-height: 90vh;
+  overflow: auto;
 }
 
 .ghost-banner {

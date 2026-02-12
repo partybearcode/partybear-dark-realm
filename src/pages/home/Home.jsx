@@ -49,29 +49,6 @@ function Home() {
     vaultComicSlugs.includes(page.slug)
   )
 
-  const loreTimeline = [
-    {
-      year: '1983',
-      title: 'The Bite',
-      description: 'The night shifts fracture, and the bedroom becomes a loop.',
-    },
-    {
-      year: '1987',
-      title: 'Echo Sightings',
-      description: 'Nightmares leak into day shifts through corrupted tapes.',
-    },
-    {
-      year: '1993',
-      title: 'Shutdown Signal',
-      description: 'Every animatronic logs a new shadow protocol.',
-    },
-    {
-      year: 'Now',
-      title: 'Dark Realm',
-      description: 'Readers become witnesses and the archive fights back.',
-    },
-  ]
-
   const realmHighlights = [
     {
       title: 'Definitive Horror Hub',
@@ -366,22 +343,6 @@ function Home() {
         <div className="manifest-grid">
           {realmManifest.map((item) => (
             <article key={item.title} className="manifest-card" data-reveal="slam">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="timeline-section" data-impact>
-        <div className="section-header" data-reveal="rise">
-          <h2>Lore Timeline</h2>
-          <p>Key fractures that shaped the Dark Realm archive.</p>
-        </div>
-        <div className="timeline-grid">
-          {loreTimeline.map((item) => (
-            <article key={item.year} className="timeline-card" data-reveal="slam">
-              <span>{item.year}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>

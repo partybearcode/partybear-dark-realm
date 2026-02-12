@@ -210,11 +210,14 @@
 .experience-grid,
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: clamp(1rem, 2.2vw, 2rem);
   max-width: 1200px;
   margin: 0 auto;
-  grid-auto-rows: minmax(220px, auto);
+}
+
+.timeline-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
 }
 
 .stats-strip {
