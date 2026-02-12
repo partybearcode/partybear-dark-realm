@@ -1,0 +1,82 @@
+.achievement-toast {
+  position: fixed;
+  top: 90px;
+  right: 1.5rem;
+  display: grid;
+  gap: 0.8rem;
+  z-index: 260;
+}
+
+.achievement-card {
+  border: 2px solid #1d0b12;
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+  min-width: 220px;
+  animation: toast-in 0.3s ease;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.achievement-card.is-platinum {
+  background: linear-gradient(120deg, rgba(229, 228, 226, 0.25), #120208);
+  border-color: #e5e4e2;
+  box-shadow: 6px 6px 0 rgba(229, 228, 226, 0.35);
+}
+
+.achievement-card.is-platinum .achievement-text span {
+  color: #e5e4e2;
+}
+
+.achievement-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 2px solid #1d0b12;
+  display: grid;
+  place-items: center;
+  color: #120208;
+  font-size: 1.1rem;
+  box-shadow: 3px 3px 0 #1d0b12;
+}
+
+.achievement-text span {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.18rem;
+  font-size: 0.6rem;
+  color: #ffe86f;
+}
+
+.achievement-text strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: #fff7f9;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .achievement-toast {
+    left: 1rem;
+    right: 1rem;
+    top: 70px;
+  }
+
+  .achievement-card {
+    width: 100%;
+  }
+}

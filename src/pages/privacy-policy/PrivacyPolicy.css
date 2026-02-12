@@ -1,0 +1,54 @@
+.privacy-policy {
+  padding: 4rem clamp(1.5rem, 6vw, 4rem);
+  display: grid;
+  place-items: center;
+}
+
+.policy-card {
+  width: min(900px, 100%);
+  border: 3px solid #1d0b12;
+  border-radius: 18px;
+  padding: 2.5rem;
+  box-shadow: 6px 6px 0 #1d0b12;
+  background: #120208;
+  display: grid;
+  gap: 1.6rem;
+}
+
+.policy-card h1 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.policy-card p {
+  color: #f1b3c4;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.policy-block {
+  border: 2px solid #1d0b12;
+  border-radius: 16px;
+  padding: 1.2rem;
+  background: #0f0207;
+  box-shadow: 4px 4px 0 #1d0b12;
+}
+
+.policy-block h2 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.05rem;
+}
+
+.policy-block ul {
+  margin-top: 0.6rem;
+  padding-left: 1.2rem;
+  color: #ffe6ed;
+}
+
+.policy-note {
+  font-size: 0.9rem;
+}

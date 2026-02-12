@@ -1,0 +1,84 @@
+.memory-match {
+  border: 3px solid #1d0b12;
+  border-radius: 18px;
+  padding: 1.5rem;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.memory-banner {
+  width: 100%;
+  height: clamp(120px, 18vw, 180px);
+  border-radius: 14px;
+  border: 3px solid #1d0b12;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.memory-banner-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(6, 2, 6, 0.1), rgba(255, 0, 55, 0.45));
+}
+
+.memory-header h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.memory-header p {
+  color: #f1b3c4;
+  margin-top: 0.4rem;
+}
+
+.memory-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.8rem;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  border: 2px solid #1d0b12;
+  background: #0f0207;
+  color: #ffe86f;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #1d0b12;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.memory-card.is-flipped {
+  background: #ff0037;
+  color: #fff7f9;
+  transform: scale(1.05);
+}
+
+.memory-reset {
+  justify-self: start;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ffe86f;
+  color: #1d0b12;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+  cursor: pointer;
+}

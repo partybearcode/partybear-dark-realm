@@ -1,0 +1,594 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 4vw, 4rem);
+  width: min(1400px, 100%);
+  margin: 0 auto;
+}
+
+.hero {
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.2rem, 4.5vw, 3.5rem) 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.hero-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  color: #ffe86f;
+}
+
+.hero-copy h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2.6rem, 4vw, 3.8rem);
+  line-height: 1.05;
+}
+
+.hero-copy p {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #f1b3c4;
+}
+
+.hero-callouts {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.hero-callouts span {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #120208;
+  text-transform: uppercase;
+  letter-spacing: 0.16rem;
+  font-size: 0.65rem;
+  box-shadow: 3px 3px 0 #1d0b12;
+}
+
+.hero-bubble {
+  align-self: flex-start;
+  background: #ffe86f;
+  color: #1d0b12;
+  padding: 0.6rem 1rem;
+  border-radius: 16px;
+  border: 3px solid #1d0b12;
+  box-shadow: 4px 4px 0 #1d0b12;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.08rem;
+  position: relative;
+}
+
+.hero-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 18px;
+  width: 18px;
+  height: 18px;
+  background: #ffe86f;
+  border-left: 3px solid #1d0b12;
+  border-bottom: 3px solid #1d0b12;
+  transform: rotate(45deg);
+}
+
+.hero-bubble {
+  animation: bubble-float 3.2s ease-in-out infinite;
+}
+
+@keyframes bubble-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+.hero-scene {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-splat {
+  position: absolute;
+  width: clamp(160px, 24vw, 240px);
+  height: clamp(160px, 24vw, 240px);
+  right: 0;
+  bottom: -20px;
+  background: radial-gradient(circle, rgba(255, 0, 55, 0.7), transparent 70%);
+  filter: blur(2px);
+  pointer-events: none;
+  animation: splat-pulse 3.8s ease-in-out infinite;
+}
+
+@keyframes splat-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.hero-parallax {
+  position: relative;
+  width: min(560px, 100%);
+}
+
+.comic-alert {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+}
+
+.comic-alert-inner {
+  border: 3px solid #1d0b12;
+  box-shadow: 6px 6px 0 #1d0b12;
+  background: #ff0037;
+  color: #fff7f9;
+  padding: 2.5rem;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.comic-alert-inner h2 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.comic-alert-inner p {
+  margin-top: 0.8rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.impact-visible .comic-alert-inner {
+  animation: panel-pop 0.8s ease;
+}
+
+.comic-section {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.highlight-section,
+.manifest-section,
+.tone-section,
+.signal-section,
+.experience-section {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+  display: grid;
+  gap: 2rem;
+}
+
+.games-section {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+  display: grid;
+  gap: 2rem;
+}
+
+.vault-subtitle h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+  font-size: 1.4rem;
+}
+
+.vault-subtitle p {
+  color: #f1b3c4;
+  margin-top: 0.4rem;
+}
+
+.timeline-section,
+.ritual-section {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+  display: grid;
+  gap: 2rem;
+}
+
+.highlight-grid,
+.manifest-grid,
+.timeline-grid,
+.ritual-grid,
+.games-grid,
+.tone-grid,
+.experience-grid,
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2.2vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-auto-rows: minmax(220px, auto);
+}
+
+.stats-strip {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1rem, 2.2vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-panel {
+  border: 3px solid #1d0b12;
+  border-radius: 16px;
+  padding: 1.4rem;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.stat-panel:nth-child(2) {
+  background: linear-gradient(135deg, rgba(255, 0, 55, 0.25), #120208 60%);
+}
+
+.stat-panel:nth-child(3) {
+  background: linear-gradient(135deg, rgba(255, 232, 111, 0.2), #120208 60%);
+}
+
+.stat-panel .stat-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18rem;
+  font-size: 0.65rem;
+  color: #ffe86f;
+}
+
+.stat-panel .stat-value {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.stat-panel p {
+  color: #f1b3c4;
+}
+
+.slice-section {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+  display: grid;
+  gap: 2rem;
+}
+
+.slice-grid {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.slice-row {
+  border: 3px solid #1d0b12;
+  border-radius: 18px;
+  padding: clamp(1rem, 2.4vw, 1.6rem);
+  background: #0f0207;
+  box-shadow: 6px 6px 0 #1d0b12;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2.2vw, 2rem);
+  align-items: center;
+}
+
+.slice-row.is-reverse .slice-media {
+  order: -1;
+}
+
+.slice-copy {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.slice-tag {
+  width: fit-content;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ff0037;
+  color: #fff7f9;
+  text-transform: uppercase;
+  letter-spacing: 0.16rem;
+  font-size: 0.65rem;
+}
+
+.slice-copy h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+}
+
+.slice-copy p {
+  color: #f1b3c4;
+}
+
+.slice-link {
+  width: fit-content;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ffe86f;
+  color: #1d0b12;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.7rem;
+  text-decoration: none;
+}
+
+.slice-media {
+  min-height: clamp(220px, 28vw, 320px);
+  border-radius: 16px;
+  border: 3px solid #1d0b12;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 5px 5px 0 #1d0b12;
+  filter: saturate(0.95) contrast(1.1);
+}
+
+.card-grid--wide .game-card,
+.card-grid--tall .game-card {
+  height: 100%;
+}
+
+@media (min-width: 980px) {
+  .card-grid--wide .game-card:nth-child(3n + 1) {
+    grid-column: span 2;
+  }
+
+  .card-grid--tall .game-card:nth-child(4n + 1) {
+    grid-row: span 2;
+  }
+
+  .card-grid--tall .game-card:nth-child(4n + 1) .game-image {
+    height: 260px;
+  }
+}
+
+.games-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.games-cta-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  border: 3px solid #1d0b12;
+  background: #ff0037;
+  color: #fff7f9;
+  text-decoration: none;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 #1d0b12;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.games-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 #1d0b12;
+}
+
+.game-tile {
+  border: 3px solid #1d0b12;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+  display: grid;
+  grid-template-rows: clamp(140px, 18vw, 200px) 1fr;
+}
+
+.game-thumb {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid #1d0b12;
+  filter: saturate(0.9) contrast(1.1);
+}
+
+.game-body {
+  padding: 1.2rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.game-body span {
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.6rem;
+}
+
+.game-tile h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.game-tile p {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #f1b3c4;
+}
+
+.game-link {
+  justify-self: start;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ffe86f;
+  color: #1d0b12;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+  text-decoration: none;
+}
+
+.tone-card,
+.experience-card,
+.highlight-card,
+.manifest-card,
+.timeline-card,
+.ritual-card {
+  border: 3px solid #1d0b12;
+  border-radius: 16px;
+  padding: 1.2rem;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+}
+
+.tone-card h3,
+.experience-card h3,
+.highlight-card h3,
+.manifest-card h3,
+.timeline-card h3,
+.ritual-card h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.tone-card p,
+.experience-card p,
+.highlight-card p,
+.manifest-card p,
+.timeline-card p,
+.ritual-card p,
+.signal-panel p {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #f1b3c4;
+  margin-top: 0.6rem;
+}
+
+.timeline-card span {
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+}
+
+.signal-panel {
+  border: 3px solid #1d0b12;
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: linear-gradient(120deg, rgba(255, 0, 55, 0.28), #120208);
+  box-shadow: 4px 4px 0 #1d0b12;
+}
+
+.signal-panel h2 {
+  font-family: 'Bangers', cursive;
+}
+
+.section-header h2 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.section-header p {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #f1b3c4;
+}
+
+.impact-visible .section-header h2 {
+  animation: title-slam 0.7s ease;
+}
+
+.final-panel {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem) 4rem;
+}
+
+.final-panel-inner {
+  border-radius: 18px;
+  border: 3px solid #1d0b12;
+  box-shadow: 6px 6px 0 #1d0b12;
+  padding: 2.5rem;
+  background: #120208;
+  text-align: center;
+}
+
+.final-panel-inner h2 {
+  font-family: 'Bangers', cursive;
+}
+
+.final-panel-inner p {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #f1b3c4;
+  margin-top: 0.8rem;
+}
+
+.impact-visible .final-panel-inner {
+  animation: panel-pop 0.8s ease;
+}
+
+@keyframes title-slam {
+  0% {
+    transform: translateY(-20px) scale(1.05);
+  }
+
+  60% {
+    transform: translateY(0) scale(0.98);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes panel-pop {
+  0% {
+    transform: scale(0.9) rotate(-1deg);
+  }
+
+  60% {
+    transform: scale(1.03) rotate(1deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 3rem;
+    gap: 1.8rem;
+  }
+
+  .comic-alert-inner,
+  .final-panel-inner {
+    padding: 2rem;
+  }
+
+  .hero-callouts span {
+    letter-spacing: 0.1rem;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid,
+  .highlight-grid,
+  .manifest-grid,
+  .tone-grid,
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,356 @@
+.game-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-bottom: 4rem;
+  width: min(1300px, 100%);
+  margin: 0 auto;
+}
+
+.game-summary {
+  padding: 0 4.5vw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  color: #f1b3c4;
+}
+
+.coming-soon {
+  padding: 0 4.5vw;
+}
+
+.coming-soon-inner {
+  border: 2px dashed #2b0a14;
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  background: rgba(15, 2, 7, 0.9);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  box-shadow: 4px 4px 0 #1d0b12;
+}
+
+.coming-soon-inner span {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ff0037;
+  color: #fff7f9;
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  font-size: 0.65rem;
+}
+
+.coming-soon-inner p {
+  color: #f1b3c4;
+}
+
+.game-panels {
+  padding: 0 4.5vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.panel-card {
+  background: #120208;
+  border: 3px solid #1d0b12;
+  border-radius: 18px;
+  padding: 1.4rem;
+  box-shadow: 6px 6px 0 #1d0b12;
+}
+
+.panel-card h3 {
+  font-family: 'Bangers', cursive;
+  margin-bottom: 0.8rem;
+}
+
+.panel-card ul {
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+  color: #f1b3c4;
+  padding: 0;
+  margin: 0;
+}
+
+.panel-card li {
+  border-bottom: 2px dashed #2b0a14;
+  padding-bottom: 0.3rem;
+}
+
+.panel-card p {
+  color: #f1b3c4;
+}
+
+.game-footer {
+  padding: 0 4.5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.comic-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.comic-nav-link {
+  border: 2px solid #1d0b12;
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+  display: grid;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: #fff7f9;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comic-nav-link span {
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  font-size: 0.6rem;
+  color: #ffe86f;
+}
+
+.comic-nav-link strong {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.comic-nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 #1d0b12;
+}
+
+.complete-section {
+  margin: 0 4.5vw;
+  padding: 1.4rem;
+  border: 3px solid #1d0b12;
+  border-radius: 16px;
+  background: #120208;
+  box-shadow: 4px 4px 0 #1d0b12;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.complete-section h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.complete-section p {
+  color: #f1b3c4;
+  margin-top: 0.4rem;
+}
+
+.complete-section button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ff0037;
+  color: #fff7f9;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.complete-section button:disabled {
+  cursor: not-allowed;
+  background: #2a0a14;
+  color: #c98a9a;
+}
+
+.game-footer a {
+  text-decoration: none;
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  font-size: 0.7rem;
+}
+
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.related-list span {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.7rem;
+  color: #f1b3c4;
+}
+
+.related-list div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.game-missing {
+  padding: 4rem 4.5vw;
+  text-align: center;
+}
+
+.game-missing h1 {
+  font-family: 'Bangers', cursive;
+}
+
+.game-missing a {
+  color: #ff0037;
+  text-decoration: none;
+}
+
+.scrub-section {
+  min-height: clamp(180vh, 220vh, 260vh);
+  padding: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.scrub-sticky {
+  position: sticky;
+  --scrub-offset: clamp(60px, 8vh, 92px);
+  top: var(--scrub-offset);
+}
+
+.scrub-media {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  min-height: calc(100vh - var(--scrub-offset));
+  background: radial-gradient(circle at top, rgba(255, 0, 55, 0.2), transparent 55%),
+    #050105;
+  isolation: isolate;
+}
+
+.scrub-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.scrub-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 0, 55, calc(0.08 + var(--scrub-progress, 0) * 0.16)) 0%,
+    rgba(0, 0, 0, 0.06) 40%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+.scrub-media-down::after {
+  transform: translateY(calc(var(--scrub-progress, 0) * 8px));
+}
+
+.scrub-media-up::after {
+  transform: translateY(calc((1 - var(--scrub-progress, 0)) * -8px));
+}
+
+.scrub-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.22s ease-out, filter 0.22s ease-out, opacity 0.35s ease;
+}
+
+.scrub-video {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.scrub-video.is-ready {
+  opacity: 0;
+}
+
+.scrub-video.is-ready.is-active {
+  opacity: 1;
+}
+
+.scrub-webp-down {
+  transform-origin: center top;
+}
+
+.scrub-webp-up {
+  transform-origin: center bottom;
+}
+
+.scrub-webp {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.scrub-overlay {
+  position: absolute;
+  left: 4.5vw;
+  right: 4.5vw;
+  bottom: 2.2rem;
+  z-index: 6;
+  max-width: 760px;
+}
+
+.scrub-overlay h2 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.06rem;
+}
+
+.scrub-overlay p {
+  color: #f8c3cf;
+  margin-top: 0.4rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
+}
+
+.scare-text {
+  margin-top: 0.8rem;
+  display: inline-block;
+  padding: 0.45rem 0.7rem;
+  border: 2px solid #2d0a15;
+  background: rgba(12, 2, 8, 0.7);
+  letter-spacing: 0.05rem;
+  font-family: 'Bangers', cursive;
+  color: #ffe86f;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 720px) {
+  .scrub-overlay {
+    bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .scrub-overlay {
+    left: 6vw;
+    right: 6vw;
+  }
+
+  .scare-text {
+    font-size: 0.9rem;
+  }
+}

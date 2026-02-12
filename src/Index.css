@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #ffe6ed;
+  background-color: #050105;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: repeating-radial-gradient(circle,
+      rgba(255, 255, 255, 0.04) 0 2px,
+      transparent 2px 6px),
+    radial-gradient(circle at top, rgba(120, 0, 30, 0.4), transparent 60%),
+    #050105;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+video {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.trophy-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  border: 2px solid #1d0b12;
+  font-size: 0.9rem;
+  background: #120208;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 0 14px rgba(0, 0, 0, 0.65);
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.trophy-badge svg {
+  font-size: 0.95rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.35));
+}
+
+.trophy-badge::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.trophy-bronze {
+  background: linear-gradient(135deg, #ad6a2b, #f0b27a);
+  color: #2b1406;
+}
+
+.trophy-silver {
+  background: linear-gradient(135deg, #a8a8a8, #f5f5f5);
+  color: #1d1d1d;
+}
+
+.trophy-gold {
+  background: linear-gradient(135deg, #b88900, #ffd166);
+  color: #3d2400;
+}
+
+.trophy-platinum {
+  background: linear-gradient(135deg, #5cc8ff, #9b7bff);
+  color: #081b34;
+}
+
+.trophy-name {
+  font-weight: 700;
+}
+
+.tier-bronze {
+  color: #f0b27a;
+  background: linear-gradient(120deg, #f7c59f, #c66b2a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(240, 178, 122, 0.65),
+    0 0 24px rgba(198, 107, 42, 0.4);
+}
+
+.tier-silver {
+  color: #e6e6e6;
+  background: linear-gradient(120deg, #f5f5f5, #a0a7b5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(230, 230, 230, 0.7),
+    0 0 24px rgba(160, 167, 181, 0.45);
+}
+
+.tier-gold {
+  color: #ffd166;
+  background: linear-gradient(120deg, #fff1a6, #ffb703);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 14px rgba(255, 209, 102, 0.75),
+    0 0 28px rgba(255, 183, 3, 0.5);
+}
+
+.tier-platinum {
+  color: #cbe4ff;
+  background: linear-gradient(120deg, #b3f1ff, #7f6cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 16px rgba(146, 210, 255, 0.85),
+    0 0 32px rgba(127, 108, 255, 0.55);
+}

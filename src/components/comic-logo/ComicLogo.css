@@ -1,0 +1,30 @@
+.comic-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-transform: uppercase;
+}
+
+.logo-burst {
+  width: 52px;
+  height: 52px;
+  background: radial-gradient(circle, #ffe86f 0 40%, transparent 42%),
+    conic-gradient(from 0deg, #ff0037 0 20%, transparent 20% 40%, #ff0037 40% 60%, transparent 60% 80%, #ff0037 80% 100%);
+  border-radius: 50%;
+  border: 3px solid #120208;
+  box-shadow: 4px 4px 0 #120208;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.08rem;
+  color: #ffe6ed;
+}
+
+.logo-text strong {
+  font-size: 1.1rem;
+  color: #ff0037;
+}

@@ -1,0 +1,145 @@
+.footer {
+  padding: 4rem 4.5vw 2rem;
+  background: #0a0206;
+  border-top: 3px solid #1d0b12;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-brand h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-brand p {
+  color: #f1b3c4;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.footer-socials a {
+  color: #ffe6ed;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #ffe86f;
+  transform: translateY(-3px);
+  text-shadow: 0 0 12px rgba(255, 232, 111, 0.6);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-links h4,
+.footer-form h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.75rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #f1b3c4;
+  transition: color 0.3s ease, transform 0.3s ease;
+  width: fit-content;
+}
+
+.footer-links a:hover {
+  color: #ffe86f;
+  transform: translateX(4px);
+}
+
+.footer-form p {
+  color: #f1b3c4;
+  margin-bottom: 1rem;
+}
+
+.footer-inputs {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.footer-inputs input {
+  flex: 1 1 160px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 2px solid #1d0b12;
+  background: #120208;
+  color: #fff7f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-inputs input:focus {
+  outline: none;
+  border-color: #ff0037;
+  box-shadow: 0 0 0 3px rgba(255, 0, 55, 0.2);
+}
+
+.footer-inputs button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ff0037;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #1d0b12;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.footer-inputs button:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #1d0b12;
+  background: #ff1f4f;
+}
+
+.footer-legal {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 3px solid #1d0b12;
+  color: #c98a9a;
+  font-size: 0.85rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-legal a {
+  color: #ffe86f;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .footer-inputs {
+    flex-direction: column;
+  }
+
+  .footer-inputs input {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.85rem;
+  }
+}

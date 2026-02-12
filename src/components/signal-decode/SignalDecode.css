@@ -1,0 +1,80 @@
+.signal-decode {
+  border: 3px solid #1d0b12;
+  border-radius: 18px;
+  background: #120208;
+  box-shadow: 5px 5px 0 #1d0b12;
+  padding: 1.6rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.signal-banner {
+  width: 100%;
+  height: clamp(120px, 18vw, 180px);
+  border-radius: 14px;
+  border: 3px solid #1d0b12;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.9) contrast(1.1);
+}
+
+.signal-header h3 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.08rem;
+}
+
+.signal-header p {
+  margin-top: 0.4rem;
+  color: #f1b3c4;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.signal-stats {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  font-size: 0.7rem;
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.signal-pad {
+  height: 100px;
+  border-radius: 16px;
+  border: 3px solid #1d0b12;
+  background: #0f0207;
+  color: #ffe6ed;
+  font-size: 1.2rem;
+  font-family: 'Bangers', cursive;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px rgba(255, 0, 55, 0.15);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.signal-pad.is-flashing {
+  background: var(--pad-color);
+  color: #120208;
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(255, 232, 111, 0.4);
+}
+
+.signal-start {
+  justify-self: start;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #ffe86f;
+  color: #1d0b12;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
