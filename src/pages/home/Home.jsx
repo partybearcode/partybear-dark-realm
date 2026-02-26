@@ -1,11 +1,32 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+  where,
+} from 'firebase/firestore'
 import ThreeScene from '../../components/three-scene/ThreeScene'
 import GameCard from '../../components/game-card/GameCard'
 import { comicPages, homeSections } from '../../data/comic-data'
+import { db } from '../../services/firebase'
 import './Home.css'
 
 function Home() {
+  const [activeHighlightIndex, setActiveHighlightIndex] = useState(0)
+  const [arcadeLogs, setArcadeLogs] = useState([])
+  const [logCategory, setLogCategory] = useState('all')
+  const [logStatus, setLogStatus] = useState('idle')
+  const [logError, setLogError] = useState('')
+  const [logPage, setLogPage] = useState(0)
+  const [logPages, setLogPages] = useState([])
+  const [logCursors, setLogCursors] = useState([])
+  const [hasMoreLogs, setHasMoreLogs] = useState(false)
+  const revealedItemsRef = useRef(new Set())
+  const impactItemsRef = useRef(new Set())
   const vaultArcadeGames = [
     {
       title: 'Ghost Tap',
@@ -137,6 +158,29 @@ function Home() {
       link: '/games/kylian-mbappe-nightmare',
     },
   ]
+
+  const logCategories = [
+    { id: 'all', label: 'All Runs', slug: '' },
+    { id: 'Ghost Tap', label: 'Ghost Tap', slug: 'ghost-tap' },
+    { id: 'Signal Decode', label: 'Signal Decode', slug: 'signal-decode' },
+    { id: 'Night Watch', label: 'Night Watch', slug: 'night-watch' },
+    { id: 'Memory Match', label: 'Memory Match', slug: 'memory-match' },
+    { id: 'Reaction Test', label: 'Reaction Test', slug: 'reaction-test' },
+    { id: 'Shadow Runner', label: 'Shadow Runner', slug: 'shadow-runner' },
+  ]
+
+  const slugify = (value) =>
+    String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')
+  const normalizeSlug = (value) => slugify(value).replace(/-/g, '')
+
+  const canPrevLogs = logPage > 0
+  const canNextLogs =
+    (logPages[logPage + 1] && logPages[logPage + 1].length > 0) ||
+    hasMoreLogs
+
   useEffect(() => {
     const revealItems = document.querySelectorAll('[data-reveal]')
     const impactItems = document.querySelectorAll('[data-impact]')
@@ -151,6 +195,7 @@ function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible')
+            revealedItemsRef.current.add(entry.target)
           }
         })
       },
@@ -162,6 +207,7 @@ function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('impact-visible')
+            impactItemsRef.current.add(entry.target)
           }
         })
       },
@@ -172,8 +218,14 @@ function Home() {
     impactItems.forEach((item) => impactObserver.observe(item))
 
     if (!('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'))
-      impactItems.forEach((item) => item.classList.add('impact-visible'))
+      revealItems.forEach((item) => {
+        item.classList.add('is-visible')
+        revealedItemsRef.current.add(item)
+      })
+      impactItems.forEach((item) => {
+        item.classList.add('impact-visible')
+        impactItemsRef.current.add(item)
+      })
     }
 
     let animationFrame
@@ -202,6 +254,120 @@ function Home() {
       if (animationFrame) cancelAnimationFrame(animationFrame)
     }
   }, [])
+
+  useEffect(() => {
+    revealedItemsRef.current.forEach((item) => {
+      if (!item.isConnected) {
+        revealedItemsRef.current.delete(item)
+        return
+      }
+      item.classList.add('is-visible')
+    })
+    impactItemsRef.current.forEach((item) => {
+      if (!item.isConnected) {
+        impactItemsRef.current.delete(item)
+        return
+      }
+      item.classList.add('impact-visible')
+    })
+  })
+
+  useEffect(() => {
+    setLogPages([])
+    setLogCursors([])
+    setLogPage(0)
+    setArcadeLogs([])
+    setHasMoreLogs(false)
+    setLogStatus('loading')
+    setLogError('')
+  }, [logCategory])
+
+  useEffect(() => {
+    let isMounted = true
+    const loadLogs = async () => {
+      if (logPages[logPage]) {
+        setArcadeLogs(logPages[logPage])
+        setLogStatus(logPages[logPage].length ? 'success' : 'empty')
+        return
+      }
+
+      setLogStatus('loading')
+      try {
+        const logsRef = collection(db, 'arcade_logs')
+        const baseQuery = [
+          orderBy('createdAt', 'desc'),
+          limit(20),
+        ]
+        const needsFilter = logCategory !== 'all'
+        const cursor = logPage > 0 ? logCursors[logPage - 1] : null
+        const logsQuery = needsFilter
+          ? cursor
+            ? query(
+                logsRef,
+                where('category', '==', logCategory),
+                orderBy('createdAt', 'desc'),
+                startAfter(cursor),
+                limit(20)
+              )
+            : query(
+                logsRef,
+                where('category', '==', logCategory),
+                ...baseQuery
+              )
+          : cursor
+            ? query(
+                logsRef,
+                orderBy('createdAt', 'desc'),
+                startAfter(cursor),
+                limit(20)
+              )
+            : query(logsRef, ...baseQuery)
+
+        const snapshot = await getDocs(logsQuery)
+        const logs = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        const lastDoc = snapshot.docs[snapshot.docs.length - 1] || null
+
+        if (isMounted) {
+          setLogPages((prev) => {
+            const next = [...prev]
+            next[logPage] = logs
+            return next
+          })
+          setLogCursors((prev) => {
+            const next = [...prev]
+            next[logPage] = lastDoc
+            return next
+          })
+          setArcadeLogs(logs)
+          setHasMoreLogs(snapshot.docs.length === 20)
+          setLogStatus(logs.length ? 'success' : 'empty')
+        }
+      } catch (error) {
+        if (isMounted) {
+          const message = String(error?.message || '')
+          let nextError = 'Arcade logs are offline. Check your Firebase rules or connection.'
+          if (error?.code === 'failed-precondition' || message.includes('index')) {
+            nextError =
+              'Missing Firestore index for arcade_logs. Create a composite index: category (ASC) + createdAt (DESC).'
+          } else if (error?.code === 'permission-denied') {
+            nextError =
+              'Permission denied. Update Firestore rules to allow read on arcade_logs.'
+          }
+          setLogError(nextError)
+          setLogStatus('error')
+        }
+      }
+    }
+
+    loadLogs()
+
+    return () => {
+      isMounted = false
+    }
+  }, [logCategory, logPage, logPages, logCursors])
 
   return (
     <main className="home">
@@ -250,12 +416,31 @@ function Home() {
           <p>One place to archive every scare, scream, and survival story.</p>
         </div>
         <div className="highlight-grid">
-          {realmHighlights.map((item) => (
-            <article key={item.title} className="highlight-card" data-reveal="slam">
+          {realmHighlights.map((item, index) => (
+            <article
+              key={item.title}
+              className={`highlight-card ${
+                activeHighlightIndex === index ? 'is-active' : ''
+              }`}
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveHighlightIndex(index)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  setActiveHighlightIndex(index)
+                }
+              }}
+            >
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
           ))}
+        </div>
+        <div className="highlight-focus">
+          <span>Focus Signal</span>
+          <h3>{realmHighlights[activeHighlightIndex]?.title}</h3>
+          <p>{realmHighlights[activeHighlightIndex]?.description}</p>
         </div>
       </section>
 
@@ -438,6 +623,128 @@ function Home() {
           {vaultComicGames.map((page) => (
             <GameCard key={page.slug} {...page} />
           ))}
+        </div>
+      </section>
+
+      <section className="arcade-feed" data-impact>
+        <div className="section-header" data-reveal="rise">
+          <h2>Arcade Logs</h2>
+          <p>Run reports pulled live from Firebase. Filter by cabinet.</p>
+        </div>
+        <div className="arcade-filter">
+          {logCategories.map((category) => (
+            <button
+              key={category.id}
+              type="button"
+              className={`arcade-chip ${
+                logCategory === category.id ? 'is-active' : ''
+              }`}
+              onClick={() => setLogCategory(category.id)}
+              aria-pressed={logCategory === category.id}
+            >
+              {category.label}
+            </button>
+          ))}
+        </div>
+        {logStatus === 'loading' ? (
+          <div className="arcade-status">Loading arcade logs...</div>
+        ) : null}
+        {logStatus === 'error' ? (
+          <div className="arcade-status">{logError}</div>
+        ) : null}
+        {logStatus === 'empty' ? (
+          <div className="arcade-status">
+            No runs yet for this cabinet. Add the first log in Firebase.
+          </div>
+        ) : null}
+        {logStatus === 'success' ? (
+          <div className="arcade-log-grid">
+            {arcadeLogs.map((log) => {
+              const logDate =
+                log.createdAt?.toDate?.() ||
+                (log.createdAt ? new Date(log.createdAt) : null)
+              const dateLabel =
+                logDate && !Number.isNaN(logDate.valueOf())
+                  ? logDate.toLocaleDateString()
+                  : ''
+              const scoreLabel = log.scoreLabel || 'Score'
+              const rawScore =
+                typeof log.scoreValue === 'number'
+                  ? log.scoreValue
+                  : typeof log.score === 'number'
+                    ? log.score
+                    : null
+              const scoreValue = rawScore ?? '—'
+              const scoreUnit =
+                typeof rawScore === 'number' && log.scoreUnit
+                  ? ` ${log.scoreUnit}`
+                  : ''
+              const logCategoryLabel =
+                log.category ||
+                logCategories.find((item) => item.slug === log.categoryKey)?.label ||
+                logCategories.find((item) => item.id === log.category)?.label ||
+                'Unsorted'
+              const mappedSlug =
+                logCategories.find(
+                  (item) =>
+                    normalizeSlug(item.label) === normalizeSlug(logCategoryLabel) ||
+                    normalizeSlug(item.slug) === normalizeSlug(logCategoryLabel) ||
+                    normalizeSlug(item.label) === normalizeSlug(log.gameName)
+                )?.slug || ''
+              const logGameId =
+                log.gameId ||
+                log.categoryKey ||
+                mappedSlug ||
+                slugify(logCategoryLabel) ||
+                slugify(log.gameName)
+              const canLink = logCategories.some((item) => item.slug === logGameId)
+              return (
+                <article key={log.id} className="arcade-log-card">
+                  <div className="log-header">
+                    <h3>{log.gameName || 'Arcade Run'}</h3>
+                    <span className="log-category">{logCategoryLabel}</span>
+                  </div>
+                  <div className="log-stats">
+                    <span>
+                      {scoreLabel} <strong>{scoreValue}{scoreUnit}</strong>
+                    </span>
+                    <span>
+                      XP <strong>{log.xp ?? '—'}</strong>
+                    </span>
+                  </div>
+                  {canLink ? (
+                    <NavLink className="log-link" to={`/arcade#${logGameId}`}>
+                      Open cabinet
+                    </NavLink>
+                  ) : null}
+                  {log.player ? (
+                    <p className="log-player">Player: {log.player}</p>
+                  ) : null}
+                  {log.note ? <p className="log-note">{log.note}</p> : null}
+                  {dateLabel ? <span className="log-date">{dateLabel}</span> : null}
+                </article>
+              )
+            })}
+          </div>
+        ) : null}
+        <div className="arcade-pagination">
+          <button
+            type="button"
+            className="arcade-page-button"
+            onClick={() => setLogPage((prev) => Math.max(0, prev - 1))}
+            disabled={!canPrevLogs || logStatus === 'loading'}
+          >
+            Prev
+          </button>
+          <span className="arcade-page-indicator">Page {logPage + 1}</span>
+          <button
+            type="button"
+            className="arcade-page-button"
+            onClick={() => setLogPage((prev) => prev + 1)}
+            disabled={!canNextLogs || logStatus === 'loading'}
+          >
+            Next
+          </button>
         </div>
       </section>
 

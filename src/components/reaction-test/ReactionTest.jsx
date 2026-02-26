@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import './ReactionTest.css'
 
 function ReactionTest() {
-  const { addXp, unlockAchievement } = useAuth()
+  const { addXp, unlockAchievement, logArcadeRun } = useAuth()
   const [status, setStatus] = useState('idle')
   const [message, setMessage] = useState('Tap to begin the reflex test.')
   const [reactionTime, setReactionTime] = useState(null)
   const [timerId, setTimerId] = useState(null)
   const [startTime, setStartTime] = useState(0)
+  const loggedRef = useRef(false)
 
   useEffect(() => {
     return () => {
@@ -21,6 +22,7 @@ function ReactionTest() {
     setReactionTime(null)
     setStatus('waiting')
     setMessage('Wait for the glow...')
+    loggedRef.current = false
     const delay = 800 + Math.random() * 1600
     const id = setTimeout(() => {
       setStatus('go')
@@ -49,6 +51,21 @@ function ReactionTest() {
       unlockAchievement('Arcade Initiate')
       if (time <= 250) unlockAchievement('Reflex Legend')
       if (time <= 350) unlockAchievement('Reflex Hunter')
+      if (!loggedRef.current) {
+        loggedRef.current = true
+        logArcadeRun({
+          gameName: 'Reaction Test',
+          category: 'Reaction Test',
+          categoryKey: 'reaction-test',
+          gameId: 'reaction-test',
+          scoreLabel: 'Reaction',
+          scoreValue: time,
+          scoreUnit: 'ms',
+          scoreDirection: 'lower',
+          xp: xpGain,
+          note: `Reaction ${time}ms`,
+        })
+      }
     }
   }
 

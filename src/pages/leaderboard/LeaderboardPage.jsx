@@ -2,9 +2,9 @@
 import { NavLink } from 'react-router-dom'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../../services/firebase'
-import { getLevelInfo } from '../../utils/levelUtils'
+import { getLevelInfo } from '../../utils/level-utils'
 import { FaTrophy } from 'react-icons/fa6'
-import { getTrophyTier, totalAchievements } from '../../utils/achievementUtils'
+import { getTrophyTier, totalAchievements } from '../../utils/achievement-utils'
 import './LeaderboardPage.css'
 
 function LeaderboardPage() {

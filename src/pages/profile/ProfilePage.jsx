@@ -4,13 +4,13 @@ import { doc, getDoc } from 'firebase/firestore'
 import { FaBolt, FaBook, FaTrophy } from 'react-icons/fa6'
 import { useAuth } from '../../context/AuthContext'
 import { db } from '../../services/firebase'
-import { getLevelInfo } from '../../utils/levelUtils'
+import { getLevelInfo } from '../../utils/level-utils'
 import {
   getAchievementIcon,
   getTrophyTier,
   totalAchievements,
-} from '../../utils/achievementUtils'
-import { getAvatarDataUrl } from '../../utils/avatarUtils'
+} from '../../utils/achievement-utils'
+import { getAvatarDataUrl } from '../../utils/avatar-utils'
 import AvatarUploader from '../../components/avatar-uploader/AvatarUploader'
 import './ProfilePage.css'
 

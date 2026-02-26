@@ -2,8 +2,8 @@
 import { useState } from 'react'
 import ComicLogo from '../comic-logo/ComicLogo'
 import { useAuth } from '../../context/AuthContext'
-import { getLevelInfo } from '../../utils/levelUtils'
-import { getAvatarDataUrl } from '../../utils/avatarUtils'
+import { getLevelInfo } from '../../utils/level-utils'
+import { getAvatarDataUrl } from '../../utils/avatar-utils'
 import './Header.css'
 
 function Header() {
@@ -75,6 +75,15 @@ function Header() {
           >
             Leaderboard
           </NavLink>
+          <NavLink
+            to="/rss-feed"
+            className={({ isActive }) =>
+              isActive ? 'header-link active' : 'header-link'
+            }
+            onClick={handleClose}
+          >
+            RSS Feed
+          </NavLink>
         </nav>
 
         <div className="header-actions">
@@ -139,6 +148,9 @@ function Header() {
         </NavLink>
         <NavLink to="/leaderboard" className="mobile-link" onClick={handleClose}>
           Leaderboard
+        </NavLink>
+        <NavLink to="/rss-feed" className="mobile-link" onClick={handleClose}>
+          RSS Feed
         </NavLink>
         {currentUser ? (
           <NavLink className="mobile-link" to="/profile" onClick={handleClose}>

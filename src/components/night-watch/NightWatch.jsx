@@ -7,7 +7,7 @@ function clamp(value, min, max) {
 }
 
 function NightWatch() {
-  const { addXp, unlockAchievement } = useAuth()
+  const { addXp, unlockAchievement, logArcadeRun } = useAuth()
   const [status, setStatus] = useState('idle')
   const [meter, setMeter] = useState(50)
   const [safeTime, setSafeTime] = useState(0)
@@ -15,6 +15,7 @@ function NightWatch() {
   const [bestTime, setBestTime] = useState(0)
   const timerRef = useRef(null)
   const watcherUnlockedRef = useRef(false)
+  const loggedRef = useRef(false)
 
   const clearTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current)
@@ -57,12 +58,28 @@ function NightWatch() {
       addXp(120)
       unlockAchievement('Arcade Initiate')
       unlockAchievement('Night Guard')
+      if (!loggedRef.current) {
+        loggedRef.current = true
+        logArcadeRun({
+          gameName: 'Night Watch',
+          category: 'Night Watch',
+          categoryKey: 'night-watch',
+          gameId: 'night-watch',
+          scoreLabel: 'Safe Time',
+          scoreValue: Math.round(safeTime),
+          scoreUnit: 's',
+          scoreDirection: 'higher',
+          xp: 120,
+          note: 'Held the safe zone for 20s.',
+        })
+      }
     }
-  }, [safeTime, status, unlockAchievement, addXp])
+  }, [safeTime, status, unlockAchievement, addXp, logArcadeRun])
 
   const startGame = () => {
     clearTimer()
     watcherUnlockedRef.current = false
+    loggedRef.current = false
     setStatus('running')
     setMeter(50)
     setSafeTime(0)

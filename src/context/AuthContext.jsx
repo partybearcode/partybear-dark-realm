@@ -12,6 +12,8 @@ import {
 } from 'firebase/auth'
 import {
   arrayUnion,
+  addDoc,
+  collection,
   doc,
   deleteDoc,
   getDoc,
@@ -23,8 +25,8 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { auth, db, storage } from '../services/firebase'
 import { deleteUser, EmailAuthProvider } from 'firebase/auth'
-import { hasAllAchievements } from '../utils/achievementUtils'
-import { getAvatarDataUrl } from '../utils/avatarUtils'
+import { hasAllAchievements } from '../utils/achievement-utils'
+import { getAvatarDataUrl } from '../utils/avatar-utils'
 
 const AuthContext = createContext(null)
 
@@ -223,6 +225,60 @@ function AuthProvider({ children }) {
     }))
   }
 
+  const logArcadeRun = async ({
+    gameName,
+    category,
+    categoryKey,
+    gameId,
+    scoreLabel,
+    scoreValue,
+    scoreUnit,
+    scoreDirection,
+    score,
+    xp,
+    note,
+  }) => {
+    if (!currentUser) return
+    const logsRef = collection(db, 'arcade_logs')
+    const label = category || gameName || 'Unsorted'
+    const key =
+      categoryKey ||
+      label
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '')
+    const payload = {
+      gameName: gameName || 'Arcade Run',
+      category: label,
+      categoryKey: key,
+      gameId: gameId || key,
+      scoreLabel: scoreLabel || 'Score',
+      scoreValue:
+        typeof scoreValue === 'number'
+          ? scoreValue
+          : typeof score === 'number'
+            ? score
+            : null,
+      scoreUnit: scoreUnit || '',
+      scoreDirection: scoreDirection || 'higher',
+      score: typeof score === 'number' ? score : scoreValue ?? null,
+      xp: typeof xp === 'number' ? xp : null,
+      note: note || '',
+      player:
+        profile?.displayName ||
+        currentUser.displayName ||
+        currentUser.email?.split('@')[0] ||
+        'Night Reader',
+      uid: currentUser.uid,
+      createdAt: serverTimestamp(),
+    }
+    try {
+      await addDoc(logsRef, payload)
+    } catch (error) {
+      console.warn('Arcade log skipped:', error)
+    }
+  }
+
   const pushAchievement = (title) => {
     const id = `${Date.now()}-${Math.random()}`
     setAchievementQueue((prev) => [...prev, { id, title }])
@@ -371,6 +427,7 @@ function AuthProvider({ children }) {
       updateUserProfile,
       uploadAvatar,
       addXp,
+      logArcadeRun,
       markComicComplete,
       unlockAchievement,
       achievementQueue,

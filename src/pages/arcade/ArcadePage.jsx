@@ -7,7 +7,7 @@ import ReactionTest from '../../components/reaction-test/ReactionTest'
 import ShadowRunner from '../../components/shadow-runner/ShadowRunner'
 import './ArcadePage.css'
 
-function ArcadeCabinet({ children }) {
+function ArcadeCabinet({ children, gameId }) {
   const cabinetRef = useRef(null)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
@@ -28,7 +28,7 @@ function ArcadeCabinet({ children }) {
   }
 
   return (
-    <div className="arcade-cabinet" ref={cabinetRef}>
+    <div className="arcade-cabinet" ref={cabinetRef} id={gameId}>
       <button
         type="button"
         className="cabinet-fullscreen"
@@ -66,22 +66,22 @@ function ArcadePage() {
       </section>
 
       <section className="arcade-grid">
-        <ArcadeCabinet>
+        <ArcadeCabinet gameId="ghost-tap">
           <GhostTap />
         </ArcadeCabinet>
-        <ArcadeCabinet>
+        <ArcadeCabinet gameId="signal-decode">
           <SignalDecode />
         </ArcadeCabinet>
-        <ArcadeCabinet>
+        <ArcadeCabinet gameId="night-watch">
           <NightWatch />
         </ArcadeCabinet>
-        <ArcadeCabinet>
+        <ArcadeCabinet gameId="memory-match">
           <MemoryMatch />
         </ArcadeCabinet>
-        <ArcadeCabinet>
+        <ArcadeCabinet gameId="reaction-test">
           <ReactionTest />
         </ArcadeCabinet>
-        <ArcadeCabinet>
+        <ArcadeCabinet gameId="shadow-runner">
           <ShadowRunner />
         </ArcadeCabinet>
       </section>

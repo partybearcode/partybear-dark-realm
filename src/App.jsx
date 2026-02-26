@@ -20,18 +20,31 @@ import ArcadePage from './pages/arcade/ArcadePage'
 import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy'
 import ConditionsOfSale from './pages/conditions-of-sale/ConditionsOfSale'
 import LoadingScreen from './components/loading-screen/LoadingScreen'
+import RssFeedPage from './pages/rss-feed/RssFeedPage'
 import './App.css'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
     const root = document.documentElement
     const previous = root.style.scrollBehavior
     root.style.scrollBehavior = 'auto'
-    window.scrollTo(0, 0)
+    if (hash) {
+      const targetId = hash.replace('#', '')
+      requestAnimationFrame(() => {
+        const target = document.getElementById(targetId)
+        if (target) {
+          target.scrollIntoView({ behavior: 'auto', block: 'start' })
+        } else {
+          window.scrollTo(0, 0)
+        }
+      })
+    } else {
+      window.scrollTo(0, 0)
+    }
     root.style.scrollBehavior = previous
-  }, [pathname])
+  }, [pathname, hash])
 
   return null
 }
@@ -79,6 +92,7 @@ function App() {
             <Route path="/arcade" element={<ArcadePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/conditions-of-sale" element={<ConditionsOfSale />} />
+            <Route path="/rss-feed" element={<RssFeedPage />} />
             {comicPages.map((page) => (
               <Route
                 key={page.slug}

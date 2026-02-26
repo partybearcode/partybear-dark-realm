@@ -5,13 +5,14 @@ import './GhostTap.css'
 const tiles = Array.from({ length: 9 }, (_, index) => index)
 
 function GhostTap() {
-  const { addXp, unlockAchievement } = useAuth()
+  const { addXp, unlockAchievement, logArcadeRun } = useAuth()
   const [activeTile, setActiveTile] = useState(null)
   const [score, setScore] = useState(0)
   const [timeLeft, setTimeLeft] = useState(30)
   const [status, setStatus] = useState('idle')
   const intervalRef = useRef(null)
   const timerRef = useRef(null)
+  const loggedRef = useRef(false)
 
   const accuracyLabel = useMemo(() => {
     if (score >= 25) return 'Phantom'
@@ -47,10 +48,26 @@ function GhostTap() {
     unlockAchievement('Arcade Initiate')
     if (score >= 15) unlockAchievement('Ghost Tapper')
     if (score >= 25) unlockAchievement('Phantom Striker')
-  }, [timeLeft, status, score, addXp, unlockAchievement])
+    if (!loggedRef.current) {
+      loggedRef.current = true
+      logArcadeRun({
+        gameName: 'Ghost Tap',
+        category: 'Ghost Tap',
+        categoryKey: 'ghost-tap',
+        gameId: 'ghost-tap',
+        scoreLabel: 'Taps',
+        scoreValue: score,
+        scoreUnit: '',
+        scoreDirection: 'higher',
+        xp: xpGain,
+        note: `Rank ${accuracyLabel}`,
+      })
+    }
+  }, [timeLeft, status, score, addXp, unlockAchievement, logArcadeRun, accuracyLabel])
 
   const startGame = () => {
     clearTimers()
+    loggedRef.current = false
     setScore(0)
     setTimeLeft(30)
     setActiveTile(Math.floor(Math.random() * tiles.length))

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { FaCrown } from 'react-icons/fa6'
 import { useAuth } from '../../context/AuthContext'
-import { getAchievementIcon } from '../../utils/achievementUtils'
+import { getAchievementIcon } from '../../utils/achievement-utils'
 import './AchievementToast.css'
 
 function AchievementToast() {

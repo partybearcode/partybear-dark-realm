@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import './SignalDecode.css'
 
@@ -12,12 +12,13 @@ const pads = [
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 function SignalDecode() {
-  const { addXp, unlockAchievement } = useAuth()
+  const { addXp, unlockAchievement, logArcadeRun } = useAuth()
   const [sequence, setSequence] = useState([])
   const [status, setStatus] = useState('idle')
   const [flashIndex, setFlashIndex] = useState(null)
   const [playerIndex, setPlayerIndex] = useState(0)
   const [level, setLevel] = useState(0)
+  const loggedRef = useRef(false)
 
   const statusLabel = useMemo(() => {
     if (status === 'idle') return 'Press start'
@@ -51,6 +52,7 @@ function SignalDecode() {
 
   const startGame = () => {
     const first = Math.floor(Math.random() * pads.length)
+    loggedRef.current = false
     setSequence([first])
     setLevel(1)
     setPlayerIndex(0)
@@ -63,6 +65,21 @@ function SignalDecode() {
     unlockAchievement('Arcade Initiate')
     if (finalLevel >= 5) unlockAchievement('Signal Reader')
     if (finalLevel >= 8) unlockAchievement('Cipher Master')
+    if (!loggedRef.current) {
+      loggedRef.current = true
+      logArcadeRun({
+        gameName: 'Signal Decode',
+        category: 'Signal Decode',
+        categoryKey: 'signal-decode',
+        gameId: 'signal-decode',
+        scoreLabel: 'Level',
+        scoreValue: finalLevel,
+        scoreUnit: '',
+        scoreDirection: 'higher',
+        xp: xpGain,
+        note: `Max level ${finalLevel}`,
+      })
+    }
   }
 
   const handlePadClick = (index) => {

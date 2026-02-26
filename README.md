@@ -9,7 +9,7 @@
 
 <br />
 <div align="center">
-  <h3 align="center">PartyBear's Dark Realm</h3>
+  <h3 align="center">PartyBear's Dark Realm V2.0</h3>
   <img src="public/images/partybear-darkrealm.png" alt="PartyBear's Dark Realm cover" width="720" />
   <p align="center">
     A comic-horror React experience that blends FNAF lore, crossover nightmares, and XP-powered arcade games.
@@ -27,6 +27,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#main-page-description">Main Page Description</a></li>
+        <li><a href="#whats-new-v20">What's New (V2.0)</a></li>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#third-party-components">Third-Party Components</a></li>
         <li><a href="#tutorials--references">Tutorials / References</a></li>
@@ -62,6 +63,15 @@ PartyBear's Dark Realm is a comic archive of night-shift horror with dedicated p
 ## Main Page Description
 
 The Home page (routes `/` and `/home`) is the central index. It renders sections from JSON data arrays and displays game cards with images and summaries. Each card links to a dedicated comic page. Additional timeline, rituals, and manifesto sections provide narrative context while staying fully responsive.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## What's New (V2.0)
+
+* Added a Home page focus signal powered by `useState` for stable interactive highlights.
+* Connected Firebase arcade game logs (JSON data) with filtering and pagination.
+* New Project RSS Feed page with responsive feed panels.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -195,6 +205,9 @@ The Home page (routes `/` and `/home`) is the central index. It renders sections
 - [x] Arcade games with XP and achievements
 - [x] Replace placeholders with official artwork
 - [x] Add additional arcade challenges
+- [x] Home page focus signal (useState)
+- [x] Firebase arcade logs with JSON data + filters
+- [x] Project RSS Feed page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

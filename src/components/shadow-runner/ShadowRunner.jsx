@@ -5,7 +5,7 @@ import './ShadowRunner.css'
 const lanePositions = ['18%', '50%', '82%']
 
 function ShadowRunner() {
-  const { addXp, unlockAchievement } = useAuth()
+  const { addXp, unlockAchievement, logArcadeRun } = useAuth()
   const [playerLane, setPlayerLane] = useState(1)
   const [obstacles, setObstacles] = useState([])
   const [status, setStatus] = useState('idle')
@@ -13,6 +13,7 @@ function ShadowRunner() {
   const [bestScore, setBestScore] = useState(0)
   const crashedRef = useRef(false)
   const startRef = useRef(0)
+  const loggedRef = useRef(false)
 
   useEffect(() => {
     const handleKey = (event) => {
@@ -100,10 +101,26 @@ function ShadowRunner() {
     unlockAchievement('Arcade Initiate')
     if (finalScore >= 30) unlockAchievement('Shadow Runner 30s')
     if (finalScore >= 60) unlockAchievement('Shadow Runner 60s')
+    if (!loggedRef.current) {
+      loggedRef.current = true
+      logArcadeRun({
+        gameName: 'Shadow Runner',
+        category: 'Shadow Runner',
+        categoryKey: 'shadow-runner',
+        gameId: 'shadow-runner',
+        scoreLabel: 'Run Time',
+        scoreValue: finalScore,
+        scoreUnit: 's',
+        scoreDirection: 'higher',
+        xp: xpGain,
+        note: `Run time ${finalScore}s`,
+      })
+    }
   }
 
   const startGame = () => {
     crashedRef.current = false
+    loggedRef.current = false
     setPlayerLane(1)
     setObstacles([])
     setScore(0)

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import './MemoryMatch.css'
 
@@ -12,7 +12,7 @@ function shuffle(array) {
 }
 
 function MemoryMatch() {
-  const { addXp, unlockAchievement } = useAuth()
+  const { addXp, unlockAchievement, logArcadeRun } = useAuth()
   const [cards, setCards] = useState(() => {
     const pairs = symbols.flatMap((symbol, index) => [
       { id: `${index}-a`, symbol, matched: false },
@@ -24,6 +24,7 @@ function MemoryMatch() {
   const [moves, setMoves] = useState(0)
   const [startedAt, setStartedAt] = useState(null)
   const [completed, setCompleted] = useState(false)
+  const loggedRef = useRef(false)
 
   const allMatched = useMemo(
     () => cards.every((card) => card.matched),
@@ -40,6 +41,7 @@ function MemoryMatch() {
     setMoves(0)
     setStartedAt(null)
     setCompleted(false)
+    loggedRef.current = false
   }
 
   const handleFlip = (card) => {
@@ -78,7 +80,22 @@ function MemoryMatch() {
     if (elapsed && elapsed <= 60) {
       unlockAchievement('Memory Sprinter')
     }
-  }, [allMatched, completed, startedAt, addXp, unlockAchievement])
+    if (!loggedRef.current) {
+      loggedRef.current = true
+      logArcadeRun({
+        gameName: 'Memory Match',
+        category: 'Memory Match',
+        categoryKey: 'memory-match',
+        gameId: 'memory-match',
+        scoreLabel: 'Moves',
+        scoreValue: moves,
+        scoreUnit: '',
+        scoreDirection: 'lower',
+        xp: 50,
+        note: elapsed ? `Cleared in ${elapsed}s` : 'Cleared run',
+      })
+    }
+  }, [allMatched, completed, startedAt, addXp, unlockAchievement, logArcadeRun, moves])
 
   return (
     <section className="memory-match">
