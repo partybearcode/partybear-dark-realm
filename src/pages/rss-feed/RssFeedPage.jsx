@@ -8,6 +8,7 @@ function RssFeedPage() {
       title: 'Project commits',
       description: 'Every push to the Dark Realm codebase.',
       url: 'https://github.com/partybearcode/partybear-dark-realm/commits/main.atom',
+      api: 'https://api.github.com/repos/partybearcode/partybear-dark-realm/commits?per_page=5',
     },
   ]
 
@@ -15,7 +16,7 @@ function RssFeedPage() {
     feedSources.reduce(
       (acc, feed) => ({
         ...acc,
-        [feed.id]: { status: 'loading', items: [], error: '' },
+        [feed.id]: { status: 'loading', items: [], error: '', note: '' },
       }),
       {}
     )
@@ -46,15 +47,47 @@ function RssFeedPage() {
             ...prev,
             [feed.id]:
               items.length > 0
-                ? { status: 'success', items, error: '' }
+                ? { status: 'success', items, error: '', note: '' }
                 : {
                     status: 'empty',
                     items: [],
                     error: 'No items yet for this feed.',
+                    note: '',
                   },
           }))
         }
       } catch (error) {
+        if (feed.api) {
+          try {
+            const response = await fetch(feed.api)
+            if (!response.ok) {
+              throw new Error('API response failed.')
+            }
+            const data = await response.json()
+            const items = data.slice(0, 5).map((entry) => ({
+              title:
+                entry.commit?.message?.split('\n')[0] ||
+                entry.commit?.message ||
+                'Update',
+              link: entry.html_url || '',
+              date: entry.commit?.author?.date || '',
+            }))
+            if (isMounted) {
+              setFeeds((prev) => ({
+                ...prev,
+                [feed.id]: {
+                  status: items.length ? 'success' : 'empty',
+                  items,
+                  error: items.length ? '' : 'No items yet for this feed.',
+                  note: 'Loaded via GitHub API fallback.',
+                },
+              }))
+            }
+            return
+          } catch (apiError) {
+            // fall through to error display
+          }
+        }
         if (isMounted) {
           setFeeds((prev) => ({
             ...prev,
@@ -63,6 +96,7 @@ function RssFeedPage() {
               items: [],
               error:
                 'Feed unavailable. The RSS proxy blocked this request. Use the RSS link below.',
+              note: '',
             },
           }))
         }
@@ -111,13 +145,20 @@ function RssFeedPage() {
 
       <section className="rss-panels">
         {feedSources.map((feed) => {
-          const feedState = feeds[feed.id] || { status: 'loading', items: [] }
+          const feedState = feeds[feed.id] || {
+            status: 'loading',
+            items: [],
+            note: '',
+          }
           return (
             <article key={feed.id} className="rss-panel">
               <div className="rss-panel-header">
                 <h2>{feed.title}</h2>
                 <p>{feed.description}</p>
               </div>
+              {feedState.note ? (
+                <div className="rss-note">{feedState.note}</div>
+              ) : null}
               {feedState.status === 'loading' ? (
                 <div className="rss-status">Loading feed...</div>
               ) : null}

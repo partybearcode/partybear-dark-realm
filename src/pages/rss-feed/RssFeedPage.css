@@ -129,6 +129,13 @@
   color: #ffe86f;
 }
 
+.rss-note {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  color: #ffe86f;
+}
+
 .rss-status {
   border: 2px dashed rgba(255, 232, 111, 0.6);
   padding: 0.9rem 1.1rem;
