@@ -1,0 +1,267 @@
+.admin-logs-page {
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.4rem, 6vw, 4rem);
+  display: grid;
+  place-items: center;
+}
+
+.admin-logs-card {
+  width: min(1100px, 100%);
+  border: 3px solid #1d0b12;
+  border-radius: 22px;
+  padding: clamp(1.6rem, 3vw, 2.6rem);
+  box-shadow: 7px 7px 0 #1d0b12;
+  background: #120208;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.admin-logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-logs-header h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.admin-logs-header p {
+  color: #f1b3c4;
+}
+
+.admin-logs-count {
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+  color: #ffe86f;
+}
+
+.admin-back {
+  width: fit-content;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #0f0207;
+  color: #ffe86f;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.65rem;
+}
+
+.admin-logs-controls {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-search {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.admin-search label {
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.65rem;
+  color: #ffe86f;
+}
+
+.admin-search input {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 2px solid #1d0b12;
+  background: #0f0207;
+  color: #fff7f9;
+}
+
+.admin-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.admin-chip {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #0f0207;
+  color: #ffe6ed;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+
+.admin-chip.is-active {
+  background: #ff0037;
+  color: #fff7f9;
+}
+
+.admin-status {
+  color: #f1b3c4;
+}
+
+.admin-log-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-log-card {
+  border: 2px solid #1d0b12;
+  border-radius: 16px;
+  padding: 1rem;
+  background: #0f0207;
+  box-shadow: 4px 4px 0 #1d0b12;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.admin-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-log-header h3 {
+  font-size: 1.1rem;
+}
+
+.admin-log-category {
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.6rem;
+}
+
+.admin-log-date {
+  font-size: 0.7rem;
+  color: #f1b3c4;
+}
+
+.admin-log-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-log-meta strong {
+  margin-left: 0.3rem;
+}
+
+.admin-log-player,
+.admin-log-note {
+  color: #f1b3c4;
+}
+
+.admin-edit-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.admin-edit-grid label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: #ffe86f;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+.admin-edit-grid input,
+.admin-edit-grid textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 2px solid #1d0b12;
+  background: #120208;
+  color: #fff7f9;
+}
+
+.admin-log-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.admin-log-actions button,
+.admin-delete-actions button {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #120208;
+  color: #ffe6ed;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+
+.admin-log-actions .admin-save {
+  background: #ffe86f;
+  color: #1d0b12;
+}
+
+.admin-log-actions .admin-delete,
+.admin-delete-actions .admin-delete {
+  background: #ff0037;
+  color: #fff7f9;
+}
+
+.admin-log-actions .admin-cancel,
+.admin-delete-actions .admin-cancel {
+  background: #0f0207;
+  color: #ffe86f;
+}
+
+.admin-delete-confirm {
+  border: 2px dashed #2b0a14;
+  border-radius: 12px;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.6rem;
+  background: #120208;
+}
+
+.admin-delete-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.admin-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-page-button {
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #1d0b12;
+  background: #0f0207;
+  color: #ffe6ed;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+
+.admin-page-indicator {
+  font-size: 0.7rem;
+  color: #f1b3c4;
+}
+
+@media (max-width: 720px) {
+  .admin-log-meta {
+    flex-direction: column;
+  }
+
+  .admin-pagination {
+    flex-direction: column;
+  }
+}

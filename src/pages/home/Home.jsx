@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore'
 import ThreeScene from '../../components/three-scene/ThreeScene'
 import GameCard from '../../components/game-card/GameCard'
+import ArcadePlayChart from '../../components/arcade-play-chart/ArcadePlayChart'
 import { comicPages, homeSections } from '../../data/comic-data'
 import { db } from '../../services/firebase'
 import './Home.css'
@@ -624,6 +625,14 @@ function Home() {
             <GameCard key={page.slug} {...page} />
           ))}
         </div>
+      </section>
+
+      <section className="arcade-chart-section" data-impact>
+        <div className="section-header" data-reveal="rise">
+          <h2>Arcade Hall of Runs</h2>
+          <p>Most played cabinets from your Firebase arcade logs.</p>
+        </div>
+        <ArcadePlayChart />
       </section>
 
       <section className="arcade-feed" data-impact>

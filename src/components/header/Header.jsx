@@ -75,6 +75,17 @@ function Header() {
           >
             Leaderboard
           </NavLink>
+          {profile?.isAdmin ? (
+            <NavLink
+              to="/admin-logs"
+              className={({ isActive }) =>
+                isActive ? 'header-link active' : 'header-link'
+              }
+              onClick={handleClose}
+            >
+              Admin Logs
+            </NavLink>
+          ) : null}
           <NavLink
             to="/rss-feed"
             className={({ isActive }) =>
@@ -149,6 +160,11 @@ function Header() {
         <NavLink to="/leaderboard" className="mobile-link" onClick={handleClose}>
           Leaderboard
         </NavLink>
+        {profile?.isAdmin ? (
+          <NavLink to="/admin-logs" className="mobile-link" onClick={handleClose}>
+            Admin Logs
+          </NavLink>
+        ) : null}
         <NavLink to="/rss-feed" className="mobile-link" onClick={handleClose}>
           RSS Feed
         </NavLink>

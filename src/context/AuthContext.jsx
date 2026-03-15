@@ -54,6 +54,7 @@ const defaultProfile = (user, preferredName) => ({
   xp: 0,
   achievements: [],
   completedComics: [],
+  isAdmin: false,
   platinumAwarded: false,
   createdAt: serverTimestamp(),
   updatedAt: serverTimestamp(),
@@ -101,6 +102,7 @@ function AuthProvider({ children }) {
         }
         setProfile({
           platinumAwarded: false,
+          isAdmin: false,
           ...existing,
         })
         return existing
@@ -118,6 +120,7 @@ function AuthProvider({ children }) {
         xp: profile?.xp || 0,
         achievements: profile?.achievements || [],
         completedComics: profile?.completedComics || [],
+        isAdmin: profile?.isAdmin || false,
       }
       setProfile(localProfile)
       return localProfile

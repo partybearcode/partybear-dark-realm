@@ -9,10 +9,10 @@
 
 <br />
 <div align="center">
-  <h3 align="center">PartyBear's Dark Realm V2.0</h3>
+  <h3 align="center">PartyBear's Dark Realm V3.0</h3>
   <img src="public/images/partybear-darkrealm.png" alt="PartyBear's Dark Realm cover" width="720" />
   <p align="center">
-    A comic-horror React experience that blends FNAF lore, crossover nightmares, and XP-powered arcade games.
+    The definitive horror comic website blending FNAF lore, crossover nightmares, and XP-powered arcade games.
     <br />
     <a href="#about-the-project"><strong>Explore the docs</strong></a>
   </p>
@@ -27,7 +27,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#main-page-description">Main Page Description</a></li>
-        <li><a href="#whats-new-v20">What's New (V2.0)</a></li>
+        <li><a href="#whats-new-v30">What's New (V3.0)</a></li>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#third-party-components">Third-Party Components</a></li>
         <li><a href="#tutorials--references">Tutorials / References</a></li>
@@ -43,6 +43,7 @@
       </ul>
     </li>
     <li><a href="#routes">Routes</a></li>
+    <li><a href="#rss-reader-guide">RSS Reader Guide</a></li>
     <li><a href="#deployment-notes-github">Deployment Notes (GitHub)</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
@@ -67,11 +68,12 @@ The Home page (routes `/` and `/home`) is the central index. It renders sections
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## What's New (V2.0)
+## What's New (V3.0)
 
-* Added a Home page focus signal powered by `useState` for stable interactive highlights.
-* Connected Firebase arcade game logs (JSON data) with filtering and pagination.
-* New Project RSS Feed page with responsive feed panels.
+* Upgraded to the definitive V3.0 release of PartyBear's Dark Realm.
+* Added an admin rank with an Admin Logs panel that can update and delete arcade logs.
+* New multi-style game stats graph system for arcade insights.
+* Added a guide for publishing the RSS feed in external public readers.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -185,6 +187,39 @@ The Home page (routes `/` and `/home`) is the central index. It renders sections
 * `/profile` -> User profile and achievements
 * `/privacy-policy` -> Privacy policy
 * `/conditions-of-sale` -> Conditions of sale
+* `/rss-feed` -> Project RSS feed page
+* `/admin-logs` -> Admin-only arcade logs panel
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## RSS Reader Guide (Github)
+
+Use this to plug the project RSS into any public reader (Feedly, Inoreader, The Old Reader, etc.).
+
+1. Open the app page `/rss-feed`.
+
+<img src="public/images/rss-step1.png" width="720" />
+
+2. Copy one of RSS links shown in the “Dark Realm Update Feed” header.
+
+<img src="public/images/rss-step2.png" width="720" />
+
+3. Open your RSS reader and choose **Add Feed / Subscribe**.
+
+<img src="public/images/rss-step3.png" width="720" />
+
+
+4. Paste the RSS link and confirm.
+
+<img src="public/images/rss-step4.png" width="720" />
+
+5. Each item will link back to the corresponding update URL.
+
+<img src="public/images/rss-step5.png" width="720" />
+
+6. If you don't want to use an external RSS readers, you can use mine in my website.
+
+<img src="public/images/rss-step6.png" width="720" />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -195,6 +230,7 @@ The Home page (routes `/` and `/home`) is the central index. It renders sections
 * Push to GitHub and submit the repo URL (only the URL).
 * Keep media lightweight (GitHub limit ~50MB per file).
 * Replace placeholder images with optimized assets before final submission.
+* Firebase Hosting URL: https://users-partybear-dark-realm.web.app/home
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -208,6 +244,8 @@ The Home page (routes `/` and `/home`) is the central index. It renders sections
 - [x] Home page focus signal (useState)
 - [x] Firebase arcade logs with JSON data + filters
 - [x] Project RSS Feed page
+- [x] Admin rank with arcade logs management
+- [x] Multi-style game stats chart system
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

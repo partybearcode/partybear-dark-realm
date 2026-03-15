@@ -277,7 +277,10 @@ export const comicPages = [
     location: 'Cursed Bernabeu',
     threats: ['Phantom Vinicius', 'Echo Goal'],
     tips: ['Silence the chants', 'Stay near the lights', 'Avoid the wing'],
-    comingSoon: true,
+    media: {
+      localWebm: '/videos/vini-jr.webm',
+      localWebmReverse: '/videos/vini-jr-reverse.webm',
+    },
   },
 ]
 

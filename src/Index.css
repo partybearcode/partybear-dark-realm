@@ -142,3 +142,29 @@ textarea {
   text-shadow: 0 0 16px rgba(146, 210, 255, 0.85),
     0 0 32px rgba(127, 108, 255, 0.55);
 }
+
+.admin-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  border: 2px solid #2b0a14;
+  background: radial-gradient(circle at top, #ff6b6b, #4a0010 70%);
+  color: #fff7f9;
+  box-shadow: 0 0 12px rgba(255, 0, 55, 0.35);
+  line-height: 0;
+  overflow: hidden;
+  align-self: center;
+  vertical-align: middle;
+}
+
+.admin-badge svg {
+  font-size: 0.85rem;
+  width: 0.9em;
+  height: 0.9em;
+  display: block;
+  line-height: 0;
+  transform: translateY(0);
+  transform-origin: center;
+}

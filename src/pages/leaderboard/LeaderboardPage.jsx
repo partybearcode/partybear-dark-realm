@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 import { getLevelInfo } from '../../utils/level-utils'
-import { FaTrophy } from 'react-icons/fa6'
+import { FaTrophy, FaUserShield } from 'react-icons/fa6'
 import { getTrophyTier, totalAchievements } from '../../utils/achievement-utils'
 import './LeaderboardPage.css'
 
@@ -80,6 +80,11 @@ function LeaderboardPage() {
                         >
                           {user.displayName}
                         </strong>
+                        {user.isAdmin ? (
+                          <span className="admin-badge" aria-label="Admin user">
+                            <FaUserShield />
+                          </span>
+                        ) : null}
                       </div>
                       <span>
                         Level {levelInfo.level} · {user.xp || 0} XP

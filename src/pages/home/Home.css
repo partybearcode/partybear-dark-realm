@@ -183,6 +183,12 @@
   gap: 2rem;
 }
 
+.arcade-chart-section {
+  padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
+  display: grid;
+  gap: 1.2rem;
+}
+
 .arcade-feed {
   padding: 0 clamp(1.2rem, 4.5vw, 3.5rem);
   display: grid;
@@ -389,6 +395,11 @@
   .arcade-log-grid {
     grid-template-columns: 1fr;
   }
+
+  .ritual-card {
+    flex: 1 1 100%;
+    padding: 1rem;
+  }
 }
 
 .vault-subtitle h3 {
@@ -412,7 +423,6 @@
 .highlight-grid,
 .manifest-grid,
 .timeline-grid,
-.ritual-grid,
 .games-grid,
 .tone-grid,
 .experience-grid,
@@ -422,6 +432,21 @@
   gap: clamp(1rem, 2.2vw, 2rem);
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.ritual-grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.ritual-grid {
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .timeline-grid {
@@ -661,6 +686,12 @@
   padding: 1.2rem;
   background: #120208;
   box-shadow: 4px 4px 0 #1d0b12;
+  min-width: 0;
+}
+
+.ritual-card {
+  flex: 1 1 240px;
+  max-width: 100%;
 }
 
 .highlight-card {
@@ -728,6 +759,7 @@
   font-family: 'Space Grotesk', sans-serif;
   color: #f1b3c4;
   margin-top: 0.6rem;
+  overflow-wrap: anywhere;
 }
 
 .timeline-card span {

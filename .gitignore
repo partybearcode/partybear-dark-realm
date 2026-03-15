@@ -11,6 +11,20 @@ node_modules/
 dist
 dist-ssr
 *.local
+.env
+.env.*.local
+.firebase/
+coverage/
+*.cache
+.cache/
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.vite/
+.turbo/
+.vercel/
+.netlify/
+Thumbs.db
 
 # Optional package manager caches
 .npm/

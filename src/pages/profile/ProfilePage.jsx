@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from 'react'
 import { Navigate, NavLink, useParams } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
-import { FaBolt, FaBook, FaTrophy } from 'react-icons/fa6'
+import { FaBolt, FaBook, FaTrophy, FaUserShield } from 'react-icons/fa6'
 import { useAuth } from '../../context/AuthContext'
 import { db } from '../../services/firebase'
 import { getLevelInfo } from '../../utils/level-utils'
@@ -203,6 +203,11 @@ function ProfilePage() {
                   >
                     {activeProfile?.displayName || 'Night Reader'}
                   </h2>
+                  {activeProfile?.isAdmin ? (
+                    <span className="admin-badge" aria-label="Admin user">
+                      <FaUserShield />
+                    </span>
+                  ) : null}
                 </div>
                 <span className="profile-label">Level Progress</span>
                 <div className="level-track">

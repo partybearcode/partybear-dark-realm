@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>PartyBear's Dark Realm - Comic Entries</title>
+    <link>https://users-partybear-dark-realm.web.app/home</link>
+    <description>Latest comic entries from the Dark Realm archive.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>FNAF 1: Night Shift Entry</title>
+      <link>https://users-partybear-dark-realm.web.app/games/fnaf-1</link>
+      <guid isPermaLink="true">https://users-partybear-dark-realm.web.app/games/fnaf-1</guid>
+      <pubDate>Sat, 15 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Security booth survival, power drains, and the first animatronic assault.</description>
+    </item>
+    <item>
+      <title>FNAF 4: Nightmare Frame</title>
+      <link>https://users-partybear-dark-realm.web.app/games/fnaf-4</link>
+      <guid isPermaLink="true">https://users-partybear-dark-realm.web.app/games/fnaf-4</guid>
+      <pubDate>Sat, 15 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Bedroom survival chapter with audio-first defense and Fredbear terror.</description>
+    </item>
+    <item>
+      <title>FNAF: Security Breach</title>
+      <link>https://users-partybear-dark-realm.web.app/games/fnaf-security-breach</link>
+      <guid isPermaLink="true">https://users-partybear-dark-realm.web.app/games/fnaf-security-breach</guid>
+      <pubDate>Sat, 15 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Mega Pizzaplex free roam horror with Vanny stalking the halls.</description>
+    </item>
+    <item>
+      <title>Vinicius Jr: Haunted Dribble</title>
+      <link>https://users-partybear-dark-realm.web.app/games/vinicius-junior-nightmare</link>
+      <guid isPermaLink="true">https://users-partybear-dark-realm.web.app/games/vinicius-junior-nightmare</guid>
+      <pubDate>Sat, 15 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Soccer nightmare crossover with cursed chants and shadow dribbles.</description>
+    </item>
+    <item>
+      <title>FNAF Help Wanted</title>
+      <link>https://users-partybear-dark-realm.web.app/games/fnaf-help-wanted</link>
+      <guid isPermaLink="true">https://users-partybear-dark-realm.web.app/games/fnaf-help-wanted</guid>
+      <pubDate>Sat, 15 Mar 2026 00:00:00 GMT</pubDate>
+      <description>VR training horror where Glitchtrap takes control.</description>
+    </item>
+  </channel>
+</rss>

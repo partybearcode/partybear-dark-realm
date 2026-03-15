@@ -80,10 +80,7 @@ function GamePage({ slug }) {
     }
   }, [slug])
 
-  const shouldScrub =
-    page?.category === 'FNAF' &&
-    page?.media?.localWebm &&
-    page?.media?.localWebmReverse
+  const shouldScrub = page?.media?.localWebm && page?.media?.localWebmReverse
 
   useEffect(() => {
     if (!shouldScrub) return undefined

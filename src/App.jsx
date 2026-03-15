@@ -21,6 +21,7 @@ import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy'
 import ConditionsOfSale from './pages/conditions-of-sale/ConditionsOfSale'
 import LoadingScreen from './components/loading-screen/LoadingScreen'
 import RssFeedPage from './pages/rss-feed/RssFeedPage'
+import AdminLogsPage from './pages/admin-logs/AdminLogsPage'
 import './App.css'
 
 function ScrollToTop() {
@@ -90,6 +91,7 @@ function App() {
             <Route path="/profile/:userId" element={<ProfilePage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/arcade" element={<ArcadePage />} />
+            <Route path="/admin-logs" element={<AdminLogsPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/conditions-of-sale" element={<ConditionsOfSale />} />
             <Route path="/rss-feed" element={<RssFeedPage />} />
